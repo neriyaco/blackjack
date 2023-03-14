@@ -1,0 +1,33 @@
+<div class="background h-100 d-flex align-items-center justify-content-center">
+  <div *ngIf="gameStatus">
+    <app-player [player]="dealer"></app-player>
+    <div class="d-flex justify-content-evenly pt-4">
+      <div *ngFor="let player of players">
+        <app-player [player]="player"></app-player>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <button class="btn btn-primary" *ngFor="let actionName of actions" (click)="action(actionName)">{{actionName
+            | titlecase}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!gameStatus">
+    <button class="btn btn-primary" (click)="startGame()">Start Game</button>
+  </div>
+</div>
+<ng-template #gameEndModal>
+  <div class="text-center p-3">
+    <h1>Game Over</h1>
+    <div *ngIf="winners.length > 1">
+      <h2>Winners</h2>
+      <div *ngFor="let winner of winners">
+        <h3>{{winner.name}}</h3>
+      </div>
+    </div>
+    <div *ngIf="winners.length === 1">
+      <h2>Winner</h2>
+      <h3>{{winners[0].name}}</h3>
+    </div>
+    <button (click)="startGame()" class="btn btn-primary">Restart Game</button>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-center flex-column gap-2 align-items-center py-2">
+  <div>
+    <span class="bg-light rounded p-1">{{player.name}}</span>
+  </div>
+  <div>
+    <span class="bg-light rounded p-1">Score: {{player.score}}</span>
+  </div>
+</div>
+<div class="d-flex justify-content-center gap-2" *ngIf="player.splitHand">
+  <app-card *ngFor="let card of player.splitHand" [card]="card"></app-card>
+</div>
+<div class="d-flex justify-content-center gap-2">
+  <app-card *ngFor="let card of player.hand" [card]="card"></app-card>
+</div>
